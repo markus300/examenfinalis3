@@ -1,92 +1,128 @@
-# final-2da
+# Final2
 
-Examen Final Segunda Oportunidad 2022 - DAS
+Examen Final 2da oportunidad
 
-## Getting started
+## Plantillas
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+Utilizar la [plantilla](https://drive.google.com/file/d/1IjQcCgzw0jb11otTmdcVMlTSOuR4P2aB/view?usp=sharing) inicial base 
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+![Plantilla](<./public/general.png>)
 
-## Add your files
+## Restricciones
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+1. Implementar una pequeña **aplicación Web** que nos permita "twitear" usando la plantilla dada
+1. La misma debe poseer una **base de datos** por detrás para el manejo de la información, la misma debe estar en la nube, pudiendo ser SQL o NoSQL
+1. La base de datos se debe diseñar para soportar correctamente los distintos Requerimientos de la aplicación
+1. Debe ser un proyecto **NodeJS** utilizando **Express**
+1. La aplicación debe estar alojada **en la nube** usando **Heroku**
+1. La interacción con la base de datos se daba en forma asíncrona, usando Ajax y cualquier librería de Frontend a su elección
+1. Usar Socket.io para los Websockets
+1. El código a ser corregido debe estar en la rama "main", la cuál se debe actualizar con un merge request al profesor
+1. En la fecha del examen se debe presentar el trabajo finalizado en forma **individual**, con una defensa personal o modificación de los realizado
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/uc-ing-soft/das/is3-2022/final-2da.git
-git branch -M main
-git push -uf origin main
-```
+## Requerimientos
 
-## Integrate with your tools
+1. Listar Tweets `4 puntos`
 
-- [ ] [Set up project integrations](https://gitlab.com/uc-ing-soft/das/is3-2022/final-2da/-/settings/integrations)
+    - [ ] Diseño de la base de datos para almacenar los tweets con todos sus datos
+    - [ ] Servicio API Rest que debe listar los últimos 10 tweets almacenados al ingresar a la pagina, en base a su fecha de creación
+    - [ ] Se debe elegir un usuario (de 3 posibles cargados en la BD), para cargar el listado de tweets para el mismo
+        - Definir 3 usuarios en su BD, cada uno con su información necesaria de nombre, avatar, etc.
+        - Mostrar un elemento de selección con estos usuarios, el que se selecciona es quien quedará como usuario "logueado" en ese momento
+        - Los usuarios deben cargarse dinámicamente de la BD - no estar _en duro_ en la interfaz
+        - Si se modifica el usuario seleccionado, la lista se debe refrescar
+    - [ ] Si no se selecciona un usuario en la interfaz, se debe mostrar un error de que no se puede cargar el listado
+    - [ ] Este servicio debe traer solos los tweets publicados por otros usuarios, no los del usuario actual seleccionado
+    - [ ] De cada tweet mostrado, se debe visualizar en forma dinámica:
+        - El texto del mismo - máximo 280 - la plantilla debe mostrarse correctamente con mensajes de hasta ese límite
+        - El avatar del usuario
+        - El nombre de la persona que lo escribió
+        - El @usario que lo escribió
+        - Todos los usuarios deben tener la tilde azul de "confirmado"
+        - La fecha y hora de escritura del mismo
+        - Si el tweet tiene una imagen asociada (url, no se deben almacenar imágenes), mostrarla correctamente
+        - La **cantidad** de favs y de reweets que dicho tweet tiene
+    - [ ] Agregar un icono o botón de refrescar listado para actualizar el mismo bajo demanda del usuario
 
-## Collaborate with your team
+    ![Listado](<./public/lista.jpg>)
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+1. Crear Tweet `2 puntos`
 
-## Test and Deploy
+    - [ ] Servicio API Rest de tipo POST que permita agregar un nuevo tweet:
+        - La fecha y hora se debe tomar automáticamente al insertar en la BD
+        - Se debe mostrar en la interfaz un contador de caracteres a medida que se tipea en el campo de texto - 0/280 - 5/280 - 15/280 etc.
+        - Al presionar el botón o apretar ENTER, se debe validar que el campo no esté vacío, y que no se hayan excedido la cantidad de caracteres
+        - Si se inserta correctamente en la BD, se debe mostrar en la lista de tweets automáticamente como primer elemento
+        - El usuario que hace el posteo debe ser el mismo para el cual se visualiza el listado en ese momento
+        - Agregar un icono u opción para agregar hasta una foto (no obligatoriamente). La foto solo debe ser un enlace - no se necesita hacer _upload_ de la misma
+        - Agregar un indicador visual en pantalla mientras se inserta el tweet (para saber que algo está ocurriendo por detrás)
 
-Use the built-in continuous integration in GitLab.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+    ![Crear](<./public/crear.png>)
 
-***
+1. Buscar/Filtrar tweets `2 puntos`
 
-# Editing this README
+    - [ ] Servicio que permita buscar tweets ya creados:
+        - Utilizar el elemento de búsqueda dado
+        - Al escribir en dicho elemento, se deben buscar los tweets que tengan el texto buscado como parte del texto del mismo, o del usuario o @usuario que contengan el texto escrito.
+        - La búsqueda no debe ser sensible a mayúsculas/minúsculas y debe buscar por todo el texto - ejemplo "HOLA MUNDO" debe buscar todos los tweets que tengan HOLA **y** MUNDO en cualquier parte mencionada, aunque no necesariamente una seguida de la otra (HOLA que tal MUNDO por ejemplo debería ser un resultado encontrado)
+        - La búsqueda debe aplicarse al escribir dentro del campo de texto - evento de teclado.
+        - Los resultados de la búsqueda deben mostrarse en una ventana o elemento adyacente al elemento de búsqueda (sin modificar el listado del primer punto)
+        - Agregar un control de tiempo entre cada vez que se presiona la tecla - que no se busque inmediatamente sino con un delay
+        - Agregar un indicador visual en pantalla cuando se está realizando la búsqueda
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+    ![Buscar](<./public/buscar.png>)
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+1. Websockets `2 puntos`
 
-## Name
-Choose a self-explaining name for your project.
+    - [ ] Websocket que permita refrescar el listado de tweets en forma automática cuando otro usuario vaya posteando nuevos tweets
+        - Los nuevos tweets se debe agregar al inicio de la lista de acuerdo a su fecha en forma dinámica - sin requerir que el usuario recargue el listado o estar consultando al servidor si hay nuevos tweets
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+1. Fav y Retweer `2 puntos`
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+    - [ ] Servicio API Rest PUT que permita hacer "fav" de un tweet
+        - Al presionar, se debe elegir cuál usuario de los creados es el que está haciendo fav
+        - Si es la primera vez, debe agregar como favorito e incrementar el contador
+        - Si ya hizo fav previamente, des-favear y decrementar contador
+        - Indicar visualmente en la interfaz la cantidad de veces actualizada y visiblemente el estado en dicho tweet (icono de otro color que ya hizo FAV)
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+    ![Fav](<./public/fav.png>)
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+    - [ ] Servicio API Rest PUT que permita hacer "RT" de un tweet
+        - Al presionar, se debe elegir cuál usuario de los creados es el que está haciendo retweet
+        - Si es la primera vez, debe agregar como RT e incrementar el contador
+        - Si ya hizo rt previamente, des-rt y decrementar contador
+        - Indicar visualmente en la interfaz la cantidad de veces actualizada y visiblemente el estado en dicho tweet (icono de otro color que ya hizo RT)
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+    ![Retweet](<./public/rt.png>)
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+1. Documentación y Enlaces `3 puntos`
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+    - [ ] Elegir uno de los enlaces del lado izquierdo y renombrarlo a **Documentación** 
+        
+        - Crear una página estática con:
+            - Su información personal 
+            - Diagrama (imagen) de la arquitectura de su aplicación durante el desarrollo, incluyendo todos los elementos necesarios y como se encuentran relacionados
+            - Diagrama (imagen) de la arquitectura de su aplicación durante la ejecución en producción, incluyendo todos los elementos necesarios y sus relaciones
+            - Agregar descripción en texto del funcionamiento de esta arquitecura (repositorio, ramas, PaaS usados, como se realiza la actualización de la aplicación, alojamiento BD, tipo BD, dependecias de su proyecto, etc.)
+            - Verificar corrección ortográfica, explicación de todos los elementos usados y procedimientos seguidos
+            - Indicar herramientas, plataformas en la nube utilizada y su tipo - Saas, PaaS, etc.
+            - Agregar un bloque estático con todos los servicios API utilizados:
+                - URL 
+                - Valores dinámicos 
+                - Datos enviados
+                - Datos recibidos
+            - Aplicar un estilo CSS adecuado y formato documento - título, contenido, etc.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+    - [ ] Elegir uno de los enlaces del lado izquierdo y renombrarlo a **Enlaces**
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+        - Crear una página estática con todos los recursos utilizados para hacer el trabajo
+        - Plantillas usadas
+        - Páginas de consulta, libros o tutoriales
+        - Aplicar un estilo CSS adecuado y formato documento - título, contenido, etc.
 
-## License
-For open source projects, say how it is licensed.
+1. Actualización nube 
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+    - [ ] Actualización en la nube con CI desde GitLab, proveyendo los datos al profesor para aplicación y key desde rama "main". Solo se corregirá el código que esté en la rama main y funcionando en Heroku

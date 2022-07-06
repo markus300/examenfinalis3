@@ -78,7 +78,7 @@ Utilizar la [plantilla](https://drive.google.com/file/d/1IjQcCgzw0jb11otTmdcVMlT
     - [ ] Websocket que permita refrescar el listado de tweets en forma automática cuando otro usuario vaya posteando nuevos tweets
         - Los nuevos tweets se debe agregar al inicio de la lista de acuerdo a su fecha en forma dinámica - sin requerir que el usuario recargue el listado o estar consultando al servidor si hay nuevos tweets
 
-1. Fav y Retweer `2 puntos`
+1. Fav y Retweet (rt) `2 puntos`
 
     - [ ] Servicio API Rest PUT que permita hacer "fav" de un tweet
         - Al presionar, se debe elegir cuál usuario de los creados es el que está haciendo fav
@@ -125,4 +125,4 @@ Utilizar la [plantilla](https://drive.google.com/file/d/1IjQcCgzw0jb11otTmdcVMlT
 
 1. Actualización nube 
 
-    - [ ] Actualización en la nube con CI desde GitLab, proveyendo los datos al profesor para aplicación y key desde rama "main". Solo se corregirá el código que esté en la rama main y funcionando en Heroku
+    - [ ] Actualización en la nube con CI desde GitLab, proveyendo los datos al profesor para aplicación y key desde rama "main". **Solo se corregirá el código que esté en la rama main y funcionando en Heroku**

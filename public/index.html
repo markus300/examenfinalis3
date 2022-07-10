@@ -131,7 +131,8 @@
                   />
                 </template>
                 <div class="post__footer">
-                  <button :class="{'material-icons rt faved': tweet.retweet, 'material-icons rt': !tweet.retweet}" @click="retweet(tweet)"> repeat </button>
+                  <span x-text="tweet.cantretweet"></span><button :class="{'material-icons rt faved': tweet.retweet, 'material-icons rt': !tweet.retweet}" @click="retweet(tweet)"> repeat </button>
+                  <span x-text="tweet.cantfavorito"></span>
                   <button :class="{'material-icons fav faved': tweet.favorito, 'material-icons fav': !tweet.favorito}" @click="fave(tweet)">favorite_border</button>
                   <button class="material-icons"> publish </button>
                 </div>
@@ -184,28 +185,34 @@
           fave(tweet) {
             if (tweet.favorito) {
               tweet.favorito = false
+              tweet.cantfavorito = tweet.cantfavorito - 1
               this.favoriting(tweet.idt, tweet);
             } else {
               tweet.favorito = true
+              tweet.cantfavorito = tweet.cantfavorito + 1
               this.favoriting(tweet.idt, tweet);
             }
           },
           retweet(tweet){
             if (tweet.retweet) {
               tweet.retweet = false
+              tweet.cantretweet = tweet.cantretweet - 1
               this.favoriting(tweet.idt, tweet);
             }
             else{
               tweet.retweet = true
+              tweet.cantretweet = tweet.cantretweet + 1
               this.favoriting(tweet.idt, tweet);
             }
           },
-          async favoriting(id, {favorito, retweet}) {
+          async favoriting(id, {favorito, retweet, cantfavorito,cantretweet}) {
             const url = `tweets/${id}`;
             //const formBody = ``;
             const enviarFormulario = {
               favorito: favorito,
-              retweet: retweet
+              retweet: retweet,
+              cantfavorito: cantfavorito,
+              cantretweet: cantretweet
             };
             let formBody = [];
             for (var propiedad in enviarFormulario) {

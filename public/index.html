@@ -96,8 +96,9 @@
               src="https://i.pravatar.cc/150?img=7"
               alt=""
             />
-            <input type="text" placeholder="What's happening?" id="que_pasa" x-ref="campotexto" @input="texto = $event.target.value"/>
+            <input type="text" placeholder="What's happening?" id="que_pasa" x-ref="campotexto" @input="texto = $event.target.value;countText($event)"/>
           </div>
+          <span id="contador">0/280</span>
           <button class="tweetBox__tweetButton">Tweet</button>
           <div id="mensaje_error" x-show="err != ''" x-text="err"></div>
         </form>
@@ -204,6 +205,13 @@
               tweet.cantretweet = tweet.cantretweet + 1
               this.favoriting(tweet.idt, tweet);
             }
+          },
+          countText(e){
+            const counter = document.getElementById('contador');
+            const txtLength = e.target.textLength;
+            console.log('contador: ', e.target.textLength);
+            counter.innerText = `${txtLength}/280`;
+
           },
           async favoriting(id, {favorito, retweet, cantfavorito,cantretweet}) {
             const url = `tweets/${id}`;

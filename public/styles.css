@@ -238,3 +238,14 @@ body {
   font-size: 18px;
   font-weight: 800;
 }
+
+#numretweet{
+  display: flex;
+  align-items: center;
+}
+
+#numfav{
+display: flex;
+align-items: center;
+ 
+}

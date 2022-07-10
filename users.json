@@ -1,0 +1,52 @@
+[{
+  "_id": {
+    "$oid": "62ad605557b31d459c0d6296"
+  },
+  "name": "eretr",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655529557803"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655529557803"
+    }
+  },
+  "id": 16
+},{
+  "_id": {
+    "$oid": "62af9f2638491eb13fe0a5e3"
+  },
+  "name": "Test22",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655676710421"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655676710421"
+    }
+  },
+  "id": 18
+},{
+  "_id": {
+    "$oid": "62afd21cc4481b8bb42d2ea6"
+  },
+  "name": "Fabricio",
+  "lastname": "Aquino",
+  "edad": 24,
+  "profesion": "dev",
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1655689756622"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1655689756622"
+    }
+  },
+  "id": 19
+}]

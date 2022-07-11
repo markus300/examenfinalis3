@@ -197,11 +197,11 @@
                 />
               </template>
               <div class="post__footer">
-                <div id="numretweet">
+                <div id="numetweet">
                 <span  x-text="tweet.cantretweet"></span>
                 <button :class="{'material-icons rt faved': tweet.retweet, 'material-icons rt': !tweet.retweet}" @click="retweet(tweet)"> repeat </button>
                </div>
-               <div  id="numfav">
+               <div id="numefav">
                <span x-text="tweet.cantfavorito"></span>
                 <button :class="{'material-icons fav faved': tweet.favorito, 'material-icons fav': !tweet.favorito}" @click="fave(tweet)">favorite_border</button>
                 </div>

@@ -99,10 +99,10 @@
             <input type="text" placeholder="What's happening?" id="que_pasa" x-ref="campotexto" @input="texto = $event.target.value;countText($event)"/>
           </div>
           <div id="pie">
-          <span id="contador">0/280</span> 
+          <span id="contador">0/280</span>
           <button class="tweetBox__tweetButton">Tweet</button>
         </div>
-         
+
           <div id="mensaje_error" x-show="err != ''" x-text="err"></div>
         </form>
       </div>
@@ -216,7 +216,7 @@
           },
           countText(e){
             const counter = document.getElementById('contador');
-            const txtLength = e.target.textLength;
+            const txtLength = e.target.textLength === undefined ? e.target.value.length : e.target.textLength;
             console.log('contador: ', e.target.textLength);
             counter.innerText = `${txtLength}/280`;
 

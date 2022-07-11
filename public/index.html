@@ -98,8 +98,11 @@
             />
             <input type="text" placeholder="What's happening?" id="que_pasa" x-ref="campotexto" @input="texto = $event.target.value;countText($event)"/>
           </div>
-          <span id="contador">0/280</span>
+          <div id="pie">
+          <span id="contador">0/280</span> 
           <button class="tweetBox__tweetButton">Tweet</button>
+        </div>
+         
           <div id="mensaje_error" x-show="err != ''" x-text="err"></div>
         </form>
       </div>

@@ -83,6 +83,9 @@
         <ul id="lista-usuarios">
         </ul>
       </div>
+      <div class="">
+        <button class="sidebar__tweet" @click="tweets=[];getTweets()">Actualizar tweets</button>
+      </div>
       <div class="feed__header">
         <h2>Home</h2>
       </div>
@@ -100,10 +103,10 @@
           <div id="pie">
           <span id="contador">0/280</span>
           </div>
-          <div class="piee">  
+          <div class="piee">
              <button class="material-icons" onclick="window.location.href='https://depor.com/resizer/pfVziOV4X8Vu9nwknDc-oNItlB8=/1200x900/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/6Y2EDIISGFGVFANEVDCR5LCG34.jpg'">image</button>
           <button class="tweetBox__tweetButton">Tweet</button>
-    
+
        </div>
 
           <div id="mensaje_error" x-show="err != ''" x-text="err"></div>
@@ -121,7 +124,7 @@
                   :alt="tweet.nombre"
                 />
               </div>
-             
+
               <div class="post__body" :idt="tweet.idt">
                 <div class="post__header">
                   <div class="post__headerText">
@@ -245,7 +248,7 @@
                 let encodedValue = encodeURIComponent(enviarFormulario[propiedad]);
                 if (encodedKey == 'whofavorito' || encodedKey == 'whoretweet') {
                   //%5B%5D
-                    formBody.push(encodedKey + "[]=" + encodedValue);
+                    formBody.push(encodedKey + "=" + `|${encodedValue}`);
                 } else {
                     formBody.push(encodedKey + "=" + encodedValue);
                 }

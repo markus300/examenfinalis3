@@ -13,12 +13,12 @@ exports.getData = (req, res) => {
   const nombre  = req.query
   console.log('query nombre', nombre);
   model.find({
-    // aqui puede ir un query
-  }, (err, docs) => {
-    res.send({
-      docs:docs // o simplmente docs
+      // aqui puede ir un query
+    }).sort('-idt').exec((err, docs) => {
+      res.send({
+        docs:docs // o simplmente docs
+      })
     })
-  })
 
 }
 

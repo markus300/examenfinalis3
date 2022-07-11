@@ -28,6 +28,7 @@ const TweetScheme = new mongoose.Schema(
       type: Number,
       default: 0
     },
+    whofavorito: [String],
     retweet: {
       type: Boolean,
       default: false
@@ -35,7 +36,8 @@ const TweetScheme = new mongoose.Schema(
     cantretweet: {
       type: Number,
       default: 0
-    }
+    },
+    whoretweet: [String]
   },{
     versionKey: false,
     timestamps: true

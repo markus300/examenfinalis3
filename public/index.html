@@ -99,8 +99,12 @@
           </div>
           <div id="pie">
           <span id="contador">0/280</span>
+          </div>
+          <div class="piee">  
+             <button class="material-icons" onclick="window.location.href='https://depor.com/resizer/pfVziOV4X8Vu9nwknDc-oNItlB8=/1200x900/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/6Y2EDIISGFGVFANEVDCR5LCG34.jpg'">image</button>
           <button class="tweetBox__tweetButton">Tweet</button>
-        </div>
+    
+       </div>
 
           <div id="mensaje_error" x-show="err != ''" x-text="err"></div>
         </form>
@@ -117,7 +121,7 @@
                   :alt="tweet.nombre"
                 />
               </div>
-
+             
               <div class="post__body" :idt="tweet.idt">
                 <div class="post__header">
                   <div class="post__headerText">
@@ -142,7 +146,6 @@
                  <span x-text="tweet.cantfavorito"></span>
                   <button :class="{'material-icons fav faved': tweet.favorito, 'material-icons fav': !tweet.favorito}" @click="fave(tweet)">favorite_border</button>
                   </div>
-                  <button class="material-icons ">image</button>
                   <button class="material-icons"> publish </button>
                 </div>
               </div>

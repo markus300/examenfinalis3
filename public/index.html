@@ -240,10 +240,17 @@
               if (enviarFormulario.hasOwnProperty(propiedad)) {
                 let encodedKey = encodeURIComponent(propiedad);
                 let encodedValue = encodeURIComponent(enviarFormulario[propiedad]);
-                formBody.push(encodedKey + "=" + encodedValue);
+                if (encodedKey == 'whofavorito' || encodedKey == 'whoretweet') {
+                  //%5B%5D
+                    formBody.push(encodedKey + "[]=" + encodedValue);
+                } else {
+                    formBody.push(encodedKey + "=" + encodedValue);
+                }
+
               }
             }
             formBody = formBody.join("&");
+            console.log('PUT:', formBody);
             const result = await fetch(
               url,
               {

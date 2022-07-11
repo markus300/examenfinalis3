@@ -133,9 +133,9 @@
                 </template>
                 <div class="post__footer">
                   <div id="numretweet">
-                  <span  x-text="tweet.cantretweet"></span> 
+                  <span  x-text="tweet.cantretweet"></span>
                   <button :class="{'material-icons rt faved': tweet.retweet, 'material-icons rt': !tweet.retweet}" @click="retweet(tweet)"> repeat </button>
-                 </div> 
+                 </div>
                  <div  id="numfav">
                  <span x-text="tweet.cantfavorito"></span>
                   <button :class="{'material-icons fav faved': tweet.favorito, 'material-icons fav': !tweet.favorito}" @click="fave(tweet)">favorite_border</button>
@@ -263,14 +263,22 @@
                 cantretweet: 0
                 //id: Math.floor(Math.random()*100000)
               }
+
+              if (this.texto.length > 280) {
+                alert('No se puede exceder de los 280 caracteres');
+                return
+              }
+
               this.err = ''
               this.tweets.unshift(post)
               this.postingTweets(post);
               document.getElementById("que_pasa").value = ''
+              document.getElementById('contador').innerText = '0/280';
               this.texto = ''
             } else {
               this.err = 'No hay texto que postear'
               document.getElementById("que_pasa").value = ''
+              document.getElementById('contador').innerText = '0/280';
               this.texto = ''
             }
           },

@@ -73,17 +73,16 @@
         <span class="material-icons"> perm_identity </span>
         <h2>Profile</h2>
       </div>
-
-      <div class="sidebarOption">
-        <span class="material-icons"> more_horiz </span>
-        <h2>More</h2>
-      </div>
       <button class="sidebar__tweet">Tweet</button>
     </div>
     <!-- sidebar ends -->
 
     <!-- feed starts -->
     <div class="feed" x-data="feed()">
+      <div >
+        <ul id="lista-usuarios">
+        </ul>
+      </div>
       <div class="feed__header">
         <h2>Home</h2>
       </div>
@@ -188,6 +187,7 @@
       function feed() {
         return {
           tweets: [],
+          usuario: {},
           err: '',
           feedErr: null,
           texto: '',
@@ -199,6 +199,7 @@
             } else {
               tweet.favorito = true
               tweet.cantfavorito = tweet.cantfavorito + 1
+              tweet.whofavorito.push(this.usuario.id)
               this.favoriting(tweet.idt, tweet);
             }
           },
@@ -211,6 +212,7 @@
             else{
               tweet.retweet = true
               tweet.cantretweet = tweet.cantretweet + 1
+              tweet.whoretweet.push(this.usuario.id)
               this.favoriting(tweet.idt, tweet);
             }
           },
@@ -221,14 +223,16 @@
             counter.innerText = `${txtLength}/280`;
 
           },
-          async favoriting(id, {favorito, retweet, cantfavorito,cantretweet}) {
+          async favoriting(id, {favorito, retweet, cantfavorito,cantretweet, whofavorito,whoretweet}) {
             const url = `tweets/${id}`;
             //const formBody = ``;
             const enviarFormulario = {
               favorito: favorito,
               retweet: retweet,
               cantfavorito: cantfavorito,
-              cantretweet: cantretweet
+              cantretweet: cantretweet,
+              whofavorito: whofavorito,
+              whoretweet: whoretweet
             };
             let formBody = [];
             for (var propiedad in enviarFormulario) {
@@ -335,7 +339,7 @@
               console.log('data? ',data.docs);
               const result = data.docs;
               for (var propiedad in result) {
-                console.log('debe aparecer', result[propiedad]);
+                //console.log('debe aparecer', result[propiedad]);
                 this.tweets.push(result[propiedad])
               }
               console.log('this.tweets', this.tweets);
@@ -352,7 +356,51 @@
               console.error('Hubo un problema con la operación', error)
             });
           },
+          getUsers() {
+            // https://a75303d9-b8c8-47c4-a442-eafc9ccec2db.mock.pstmn.io/tweets
+            fetch('/user')
+            .then(response => {
+              if (!response.ok) {
+                this.feedErr = 'Hubo un problema en el request'
+                throw new Error ('Hubo un problema en el request')
+              }
+              return response.json()
+            })
+            .then(data => {
+              console.log('data? ',data.docs);
+              const result = data.docs;
+              let resq = [];
+              for (var propiedad in result) {
+                console.log('debe aparecer', result[propiedad]);
+                resq.push(`<li value='${result[propiedad].usuario}' @click="selectUser('${result[propiedad]._id}')"><button>${result[propiedad].name} - ${result[propiedad].usuario}</button></li>`);
+
+              }
+              resq = resq.join("")
+
+              document.getElementById("lista-usuarios").innerHTML = resq;
+              //console.log('this.tweets', this.tweets);
+
+              /*
+              data.resultados.forEach(resultado => {
+                resultado.faved = false;
+                this.tweets.push(resultado)
+              });
+              */
+
+            })
+            .catch(error => {
+              this.feedErr = error
+              console.error('Hubo un problema con la operación', error)
+            });
+          },
+          selectUser(id){
+            this.usuario = {
+              id: id
+            }
+            console.log(this.usuario);
+          },
           init() {
+            this.getUsers()
             this.getTweets()
           }
         }

@@ -25,6 +25,7 @@ app.use(bodyParser.json({
   })
 )
 
+app.use(userRouters)
 app.use(tweetsRouters)
 
 app.listen(port, () => {

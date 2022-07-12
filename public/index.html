@@ -487,7 +487,7 @@
                 resq.push(`<li value='${result[propiedad].usuario}' @click="selectUser('${result[propiedad]._id}')"><button :class=" '${this.usuario._id}' == '${result[propiedad]._id}' ? 'sidebarOption current-user' : 'sidebarOption' ">${result[propiedad].name} - ${result[propiedad].usuario}</button></li>`);
                 this.usuarios.push(result[propiedad]);
               }
-              resq.push(`<li value='' @click="selectUser('0')"><button :class=" '${this.usuario._id}' == '0' ? 'sidebarOption current-user' : 'sidebarOption' ">Ninguno</button></li>`);
+              //resq.push(`<li value='' @click="selectUser('0')"><button :class=" '${this.usuario._id}' == '0' ? 'sidebarOption current-user' : 'sidebarOption' ">Ninguno</button></li>`);
               resq = resq.join("")
 
               document.getElementById("lista-usuarios").innerHTML = resq;

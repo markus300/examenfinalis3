@@ -239,12 +239,12 @@ body {
   font-weight: 800;
 }
 
-#numretweet{
+#numetweet{
   display: flex;
   align-items: center;
 }
 
-#numfav{
+#numefav{
 display: flex;
 align-items: center;
  

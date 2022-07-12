@@ -8,6 +8,9 @@ const TweetScheme = new mongoose.Schema(
     },
 
     */
+    imagen:{
+      type: String
+    },
     nombre: {
       type: String
     },

@@ -142,7 +142,7 @@
                     <p x-text="tweet.comentario"></p>
                   </div>
                 </div>
-                <template x-if="tweet.imagen != undefined">
+                <template x-if="tweet.imagen != '' && tweet.imagen != undefined">
                   <img
                     :src="tweet.imagen"
                     :alt="tweet.comentario"
@@ -262,7 +262,7 @@
           err: '',
           feedErr: null,
           texto: '',
-          imagen: undefined,
+          imagen: '',
           async searchTweet(e){
             e.preventDefault();
             const nombreSRCH = document.getElementById('tweetBuscar').value;
@@ -391,13 +391,13 @@
               document.getElementById("que_pasa").value = ''
               document.getElementById('contador').innerText = '0/280';
               this.texto = ''
-              this.imagen = undefined
+              this.imagen = ''
             } else {
               this.err = 'No hay texto que postear'
               document.getElementById("que_pasa").value = ''
               document.getElementById('contador').innerText = '0/280';
               this.texto = ''
-              this.imagen = undefined
+              this.imagen = ''
             }
           },
           async postingTweets({usuario,nombre,avatar,comentario,favorito,cantfavorito,retweet, cantretweet, imagen}){

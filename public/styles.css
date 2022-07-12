@@ -239,12 +239,12 @@ body {
   font-weight: 800;
 }
 
-#numetweet{
+.numetweet{
   display: flex;
   align-items: center;
 }
 
-#numefav{
+.numefav{
 display: flex;
 align-items: center;
  

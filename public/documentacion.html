@@ -4,21 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentación</title>
+    <title>Página Documentación</title>
 </head>
 <body>
-    <h1> Información Personal </h1>
-    <div>
-    <h2>Integrantes</h2>
-    <p> Jazmín Cañete </p>
-    <p> Markus Huth</p>
-    </div>
-
-    <h2> Diagrama de arquitectura (Desarrollo) </h2>
-    <h2>Herramientas y Plataformas utilizadas</h2>
+    <h2 style="margin-bottom:0;">Informacion Personal</h2>
+    <p style="margin-top: 0;"> Jazmín Cañete</p>
+    <h2>Diagrama de la arquitectura (desarrollo)</h2>    
+    <img height="300" src="./diagrama1.png" alt="diagrama de desarrollo">
+        <h2>Diagrama de la arquitectura (producción)</h2>    
+    <img src="./diagrama.png" alt="diagrama de producción">
+    <h2 style="margin-bottom:0 ;">Descripción del funcionamiento de la Arquitectura </h2>
+    <p style="text-align: justify;"> Primeramente, tenemos un repositorio en Gitlab en donde se desarrolla el proyecto el mismo consta de 2 ramas (dev y main), 
+        en el dev es que se trabaja (luego se pasa al main una vez terminado) la base de datos que utilizamos esta alojado en la nube
+        que es el MongoDB Atlas la herramienta que utilizamos para interactuar con este servicio es el MongoDB Compass.
+        La aplicación se actualiza de forma manual mediante un botón que se encuentra en la página principal, viendo nuestro
+        diagrama tenemos dos colecciones que son users y tweets, la colección tweets depende de la colección de users (relación de composición)
+        porque si no existen los usuarios los tweets tampoco porque los usuarios son lo que crean los mismos.
+        Por último,  como plataforma utilizamos Heroku para desplegar nuestro proyecto.
+    </p>
+    <h2> Herramientas Utilizadas</h2>
     <ul>
         <!-- software como servicio -->
-        <li >SaaS
+        <li > Software (SaaS)
           <ul>
             <li> <a href="https://gitlab.com/"> Gitlab</a></li>
             <li> <a href="https://github.com/">Github</a> </li>
@@ -26,14 +33,14 @@
         </li>
         <!-- plataforma como servicio -->
         <br>
-        <li >PaaS
+        <li > Plataforma (PaaS)
           <ul>
             <li> <a href="https://www.heroku.com/">Heroku</a> </li>  
           </ul>
         </li>
         <!--base de datos como servicio  -->
         <br>
-        <li >DaaS 
+        <li > Servicio de BD en la nube (DaaS) 
             <ul>
               <li> <a href="https://www.mongodb.com/es/atlas"> MongoDB Atlas</a></li>
             </ul>
@@ -44,8 +51,15 @@
               <li> <a href="https://www.mongodb.com/es/atlas"> MongoDB</a></li>
             </ul>
           </li>
-      </ul>
-    
-
+          <br>
+          </ul>
+          <h2>Servicios API utilizados</h2>
+          <div>
+            <h3>Fetch</h3>
+            <p> URL: /user</p>
+            <p> Datos enviado: id (valor usuario) </p>
+            <p> Datos recibidos: tweets</p>
+          </div>
+          <p> <a id="volver" href="./index.html"> Volver a la página principal</a></p>
 </body>
 </html>

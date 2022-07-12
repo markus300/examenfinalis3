@@ -32,6 +32,14 @@
       #principal {
         width: 640px;
       }
+
+      #lista-usuarios .sidebarOption{
+        margin: 0 auto;
+      }
+
+      .current-user{
+        background-color: #c2c2c2;
+      }
     </style>
   </head>
   <body>
@@ -244,7 +252,13 @@
           tweets: [],
           search:[],
           usuarios:[],
-          usuario: {},
+          usuario: {
+            id:0,
+            _id:0,
+            usuario: '',
+            name: '',
+            avatar: ''
+          },
           err: '',
           feedErr: null,
           texto: '',
@@ -348,15 +362,20 @@
           postTweet() {
             if (this.texto !== '') {
               var post = {
-                usuario: '@jazkus',
-                nombre: 'Jazmin|Markus',
-                avatar: 'https://i.pravatar.cc/150?img=7',
+                usuario: this.usuario.usuario,//'@jazkus',
+                nombre: this.usuario.name,
+                avatar: this.usuario.avatar,//'https://i.pravatar.cc/150?img=7',
                 comentario: this.texto,
                 favorito: false,
                 cantfavorito: 0,
                 retweet: false,
                 cantretweet: 0
                 //id: Math.floor(Math.random()*100000)
+              }
+
+              if(this.usuario.name == ''){
+                alert('Debe seleccionar un usuario para poder comentar');
+                return
               }
 
               if (this.texto.length > 280) {
@@ -460,9 +479,10 @@
               let resq = [];
               for (var propiedad in result) {
                 console.log('debe aparecer', result[propiedad]);
-                resq.push(`<li value='${result[propiedad].usuario}' @click="selectUser('${result[propiedad]._id}')"><button>${result[propiedad].name} - ${result[propiedad].usuario}</button></li>`);
+                resq.push(`<li value='${result[propiedad].usuario}' @click="selectUser('${result[propiedad]._id}')"><button :class=" '${this.usuario._id}' == '${result[propiedad]._id}' ? 'sidebarOption current-user' : 'sidebarOption' ">${result[propiedad].name} - ${result[propiedad].usuario}</button></li>`);
                 this.usuarios.push(result[propiedad]);
               }
+              resq.push(`<li value='' @click="selectUser('0')"><button :class=" '${this.usuario._id}' == '0' ? 'sidebarOption current-user' : 'sidebarOption' ">Ninguno</button></li>`);
               resq = resq.join("")
 
               document.getElementById("lista-usuarios").innerHTML = resq;
@@ -481,11 +501,18 @@
               console.error('Hubo un problema con la operación', error)
             });
           },
-          selectUser(id){
+          selectUser(id, usuario){
+
+            const newUser = this.usuarios.filter(u => u._id == id);
             this.usuario = {
-              id: id
+              id: id,
+              _id: newUser[0]?._id,
+              name: newUser[0]?.name,
+              usuario: newUser[0]?.usuario,
+              avatar: newUser[0]?.avatar
             }
-            console.log(this.usuario);
+            console.log('asi es! ',this.usuario);
+            this.getUsers();
           },
           init() {
             this.getUsers()

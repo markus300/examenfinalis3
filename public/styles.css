@@ -263,3 +263,8 @@ align-items: center;
     flex-direction: row-reverse;
     align-items: flex-start;
 }
+.aenlace{
+  text-decoration: none;
+  color: black;
+  transition: color 100ms ease-out;
+}

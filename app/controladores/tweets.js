@@ -30,7 +30,7 @@ exports.getData = (req, res) => {
          console.log(docs);
          const aBuscar = nombre.text;
          const newDocs = docs.filter(el => {
-           return el.comentario.includes(aBuscar)
+           return el.comentario.toLowerCase().includes(aBuscar)
          });
          res.send({
            docs:newDocs // o simplmente docs

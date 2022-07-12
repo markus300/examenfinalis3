@@ -294,7 +294,7 @@
             } else {
               tweet.favorito = true
               tweet.cantfavorito = tweet.cantfavorito + 1
-              tweet.whofavorito.push(this.usuario.id)
+              tweet.whofavorito.push(this.usuario._id)
               this.favoriting(tweet.idt, tweet);
             }
           },
@@ -307,7 +307,7 @@
             else{
               tweet.retweet = true
               tweet.cantretweet = tweet.cantretweet + 1
-              tweet.whoretweet.push(this.usuario.id)
+              tweet.whoretweet.push(this.usuario._id)
               this.favoriting(tweet.idt, tweet);
             }
           },
@@ -336,7 +336,7 @@
                 let encodedValue = encodeURIComponent(enviarFormulario[propiedad]);
                 if (encodedKey == 'whofavorito' || encodedKey == 'whoretweet') {
                   //%5B%5D
-                    formBody.push(encodedKey + "=" + `|${encodedValue}`);
+                    formBody.push(encodedKey + "=" + `${encodedValue}`);
                 } else {
                     formBody.push(encodedKey + "=" + encodedValue);
                 }
@@ -449,7 +449,7 @@
                 //console.log('debe aparecer', result[propiedad]);
                 this.tweets.push(result[propiedad])
               }
-              console.log('this.tweets', this.tweets);
+              console.log('this.tweets?datos', this.tweets);
               /*
               data.resultados.forEach(resultado => {
                 resultado.faved = false;

@@ -103,8 +103,8 @@
         <form action="POST" method="#" @submit.prevent="postTweet()">
           <div class="tweetbox__input">
             <img
-              src="https://i.pravatar.cc/150?img=7"
-              alt=""
+              :src="usuario.avatar"
+              alt="usuario.usuario"
             />
             <input type="text" placeholder="What's happening?" id="que_pasa" x-ref="campotexto" @input="texto = $event.target.value;countText($event)"/>
           </div>

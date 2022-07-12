@@ -205,11 +205,11 @@
                 />
               </template>
               <div class="post__footer">
-                <div id="numetweet">
+                <div id="numretweet">
                 <span  x-text="tweet.cantretweet"></span>
                 <button :class="{'material-icons rt faved': tweet.retweet, 'material-icons rt': !tweet.retweet}" @click="retweet(tweet)"> repeat </button>
                </div>
-               <div id="numefav">
+               <div  id="numfav">
                <span x-text="tweet.cantfavorito"></span>
                 <button :class="{'material-icons fav faved': tweet.favorito, 'material-icons fav': !tweet.favorito}" @click="fave(tweet)">favorite_border</button>
                 </div>
@@ -501,7 +501,7 @@
               console.error('Hubo un problema con la operación', error)
             });
           },
-          selectUser(id, usuario){
+          selectUser(id){
 
             const newUser = this.usuarios.filter(u => u._id == id);
             this.usuario = {

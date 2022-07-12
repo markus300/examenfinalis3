@@ -112,7 +112,7 @@
           <span id="contador">0/280</span>
           </div>
           <div class="piee">
-             <button class="material-icons" onclick="window.location.href='https://depor.com/resizer/pfVziOV4X8Vu9nwknDc-oNItlB8=/1200x900/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/6Y2EDIISGFGVFANEVDCR5LCG34.jpg'">image</button>
+             <button class="material-icons" @click="imagen='https://depor.com/resizer/pfVziOV4X8Vu9nwknDc-oNItlB8=/1200x900/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/6Y2EDIISGFGVFANEVDCR5LCG34.jpg'">image</button>
           <button class="tweetBox__tweetButton">Tweet</button>
 
        </div>
@@ -262,6 +262,7 @@
           err: '',
           feedErr: null,
           texto: '',
+          imagen: undefined,
           async searchTweet(e){
             e.preventDefault();
             const nombreSRCH = document.getElementById('tweetBuscar').value;
@@ -366,6 +367,7 @@
                 nombre: this.usuario.name,
                 avatar: this.usuario.avatar,//'https://i.pravatar.cc/150?img=7',
                 comentario: this.texto,
+                imagen: this.imagen,
                 favorito: false,
                 cantfavorito: 0,
                 retweet: false,
@@ -389,14 +391,16 @@
               document.getElementById("que_pasa").value = ''
               document.getElementById('contador').innerText = '0/280';
               this.texto = ''
+              this.imagen = undefined
             } else {
               this.err = 'No hay texto que postear'
               document.getElementById("que_pasa").value = ''
               document.getElementById('contador').innerText = '0/280';
               this.texto = ''
+              this.imagen = undefined
             }
           },
-          async postingTweets({usuario,nombre,avatar,comentario,favorito,cantfavorito,retweet, cantretweet}){
+          async postingTweets({usuario,nombre,avatar,comentario,favorito,cantfavorito,retweet, cantretweet, imagen}){
               const enviarFormulario = {
                 usuario: usuario,
                 nombre: nombre,
@@ -405,7 +409,8 @@
                 favorito: favorito,
                 cantfavorito: cantfavorito,
                 retweet: retweet,
-                cantretweet: cantretweet
+                cantretweet: cantretweet,
+                imagen: imagen
               };
 
               let formBody = [];
